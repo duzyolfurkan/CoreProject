@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrate
 {
-    public class writer
+    public class Writer
     {
         [Key]
         public int WriterID { get; set; }
