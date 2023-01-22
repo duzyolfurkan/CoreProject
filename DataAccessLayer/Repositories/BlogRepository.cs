@@ -12,14 +12,14 @@ namespace DataAccessLayer.Repositories
 {
     public class BlogRepository : IBlogDal
     {
-        public void AddBlog(Blog blog)
+        public void Insert(Blog blog)
         {
             using var db = new Context();
             db.Blogs.Add(blog);
             db.SaveChanges();
         }
 
-        public void DeleteBlog(Blog blog)
+        public void Delete(Blog blog)
         {
             using var db = new Context();
             db.Blogs.Remove(blog);
@@ -32,17 +32,17 @@ namespace DataAccessLayer.Repositories
             return db.Blogs.Find(id);
         }
 
-        public List<Blog> ListAllBlog()
-        {
-            using var db = new Context();
-            return db.Blogs.ToList();
-        }
-
-        public void UpdateBlog(Blog blog)
+        public void Update(Blog blog)
         {
             using var db = new Context();
             db.Blogs.Update(blog);
             db.SaveChanges();
+        }
+
+        public List<Blog> GetListAll()
+        {
+            using var db = new Context();
+            return db.Blogs.ToList();
         }
     }
 }
