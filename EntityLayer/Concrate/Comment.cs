@@ -17,5 +17,9 @@ namespace EntityLayer.Concrate
         public DateTime CommentDate { get; set; }
         public bool CommentStatus { get; set; }
 
+        //Navigation Property
+        public Blog Blog { get; set; }
+        public int BlogID { get; set; }
+
     }
 }
