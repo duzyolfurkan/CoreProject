@@ -1,8 +1,69 @@
-﻿
+﻿@using DataAccessLayer.Concrate;
+@using EntityLayer.Concrate
+@model List<Blog>
+
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>Index</h1>
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Bloglar</h3>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
 
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 card">
+                            <a href="/Blog/BlogReadAll/@item.BlogID/">
+                                <img src="@item.BlogImage" class="card-img-top img-fluid" alt="">
+                            </a>
+
+
+                            <div class="card-body">
+                                <ul class="blog-icons my-4">
+                                    <li>
+                                        <a href="#">
+                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            <i class="far fa-comment"></i> 0
+                                        </a>
+                                    </li>
+
+                                    <!--Kategori adının getirilmesi için yapılan LINQ sorgusu (Include ile eager metodu uygulandığı için bu sorguya gerek kalmadı)-->
+                                    @{
+                                        Context db = new Context();
+
+                                        var categoryID = item.CategoryID;
+                                        var categoryName = db.Categories.Where(x => x.CategoryID == categoryID).FirstOrDefault().CategoryName;
+                                    }
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-eye">@item.Category.CategoryName</i> 
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <h5 class="card-title">
+                                    <a href="/Blog/BlogReadAll/@item.BlogID/">@item.BlogTittle</a>
+                                </h5>
+                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,70).LastIndexOf(" "))... </p>
+                                <a href="/Blog/BlogReadAll/@item.BlogID/" class="btn btn-primary read-m">Devamını Oku</a>
+                            </div>
+                            
+
+                        </div>
+                        }
+                    </div>
+                    <!--//left-->
+                </div>
+            </div>
+        </div>
+    </section>
