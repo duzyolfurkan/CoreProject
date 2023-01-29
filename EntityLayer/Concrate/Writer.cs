@@ -15,7 +15,10 @@ namespace EntityLayer.Concrate
         public string WriterAbout { get; set; }
         public string WriterImage { get; set; }
         public string WriterMail { get; set; }
+        [Required]
         public string WriterPassword { get; set; }
+        [Compare("WriterPassword", ErrorMessage = "Girdiğiniz şifreler eşleşmiyor, lütfen tekrar deneyiniz.")]
+        public string ConfirmPassword { get; set; }
         public bool WriterStatus { get; set; }
     }
 }
