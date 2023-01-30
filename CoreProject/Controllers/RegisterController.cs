@@ -27,14 +27,11 @@ namespace CoreProject.Controllers
 
 			if (results.IsValid)
 			{
-                if (ModelState.IsValid)
-                {
+
                     writer.WriterStatus = true;
                     writer.WriterAbout = "Deneme Test";
                     wm.WriterAdd(writer);
                     return RedirectToAction("Index", "Blog");
-                }
-                return View();
             }
 
 			else
