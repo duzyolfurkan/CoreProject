@@ -23,6 +23,9 @@ namespace EntityLayer.Concrate
         public Category Category { get; set; }
         public int CategoryID { get; set; }
 
-        public List<Comment> Comments { get; set; }
+		public Writer Writer { get; set; }
+		public int WriterID { get; set; }
+
+		public List<Comment> Comments { get; set; }
     }
 }
